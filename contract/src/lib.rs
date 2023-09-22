@@ -17,6 +17,7 @@ pub struct Goods {
     pub fee: f32
 }
 
+
 // Define the contract structure
 #[near_bindgen]
 #[derive(BorshDeserialize, BorshSerialize)]

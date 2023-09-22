@@ -11,10 +11,10 @@ const POINT_ONE: Balance = 100_000_000_000_000_000_000_000;
 pub struct Goods {
     pub premium: bool,
     pub sender: AccountId,
-    pub num: f32,
+    pub num: i32,
     pub text: String,
-    pub price: f32,
-    pub fee: f32
+    pub price: i32,
+    pub fee: i32
 }
 
 
@@ -50,7 +50,7 @@ impl Store {
     // Public: Takes a greeting, such as 'howdy', and records it
     //添加到购物车
     #[payable]
-    pub fn set_shoppingcar(&mut self, text: String, num:f32, price:f32) {
+    pub fn set_shoppingcar(&mut self, text: String, num:i32, price:i32) {
         // Record a log permanently to the blockchain
         let premium = env::attached_deposit() >= POINT_ONE;
         let sender = env::predecessor_account_id();
@@ -73,25 +73,25 @@ mod tests {
     #[test]
     fn add_shoppingcar() {
         let mut contract = Store::default();
-        contract.set_shoppingcar("商品A".to_string(),1.0,2.0f32);
+        contract.set_shoppingcar("商品A".to_string(),1,2);
 
         let posted_message = &contract.get_shoppingcar(None, None)[0];
-        assert_eq!(posted_message.num, 1.0);
+        assert_eq!(posted_message.num, 1);
         assert_eq!(posted_message.text, "商品A".to_string());
     }
 
     #[test]
     fn iters_messages() {
         let mut contract = Store::default();
-        contract.set_shoppingcar("1st message".to_string(),1.0,1.0);
-        contract.set_shoppingcar("2nd message".to_string(),2.0,2.0);
-        contract.set_shoppingcar("3rd message".to_string(),3.0,3.0);
+        contract.set_shoppingcar("1st message".to_string(),1,1);
+        contract.set_shoppingcar("2nd message".to_string(),2,2);
+        contract.set_shoppingcar("3rd message".to_string(),3,3);
 
         let total = &contract.get_total();
         assert!(*total == 3);
 
         let last_message = &contract.get_shoppingcar(Some(U128::from(1)), Some(2))[1];
-        assert_eq!(last_message.num, 3.0);
+        assert_eq!(last_message.num, 3);
         assert_eq!(last_message.text, "3rd message".to_string());
     }
 }

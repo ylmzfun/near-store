@@ -5,4 +5,4 @@
 echo ">> Deploying contract"
 
 #near dev-deploy --wasmFile ./target/wasm32-unknown-unknown/release/contract.wasm
-near deploy xsss.testnet --wasmFile ./target/wasm32-unknown-unknown/release/contract.wasm
+near deploy storex.testnet --wasmFile ./target/wasm32-unknown-unknown/release/contract.wasm

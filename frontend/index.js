@@ -21,7 +21,9 @@ window.onload = async () => {
 };
 
 // Button clicks
-document.querySelector('.buy').onclick = doUserAction;
+document.querySelector('#buy1').onclick = doUserAction;
+document.querySelector('#buy2').onclick = doUserAction;
+document.querySelector('#buy3').onclick = doUserAction;
 document.querySelector('#sign-in-button').onclick = () => { wallet.signIn(); };
 document.querySelector('#sign-out-button').onclick = () => { wallet.signOut(); };
 
@@ -29,26 +31,34 @@ document.querySelector('#sign-out-button').onclick = () => { wallet.signOut(); }
 async function doUserAction(event) {
   event.preventDefault();
   let num = event.target.previousElementSibling;
-
-  // document.querySelector('#signed-in-flow main')
-  //   .classList.add('please-wait');
-  await wallet.callMethod({ method: 'set_shoppingcar', args: { num: num.value,text:"这个是商品",price:1.0 }, contractId: CONTRACT_ADDRESS });
+  let name = event.target.dataset.name
+  let price = event.target.dataset.price
+  console.log(name)
+  console.log(price)
+  await wallet.callMethod({ method: 'set_shoppingcar', args: {
+    num: parseInt(num.value),text: name ,price: parseInt(price) }, contractId: CONTRACT_ADDRESS });
 
   // ===== Fetch the data from the blockchain =====
   await fetchOrderList();
-  // document.querySelector('#signed-in-flow main')
-  //   .classList.remove('please-wait');
 }
 
 // Get greeting from the contract on chain
 async function fetchOrderList() {
   const from = 0
-  const orderList = await wallet.viewMethod({ method: 'get_shoppingcar', contractId: CONTRACT_ADDRESS,args: { from: from,limit:100 } });
-  console.log(orderList)
-  // document.querySelectorAll('[data-behavior=greeting]').forEach(el => {
-  //   el.innerText = currentGreeting;
-  //   el.value = currentGreeting;
-  // });
+  const orderList = await wallet.viewMethod({ method: 'get_shoppingcar',
+    contractId: CONTRACT_ADDRESS,args: { from: from,limit:100 } });
+  if (orderList.length > 0) {
+    document.querySelector("#order-list").style.display = "block"
+    let content = ""
+    for(let i=0;i<orderList.length; i++){
+      content += "<li>"
+      content += orderList[i].sender  + "购买了" + orderList[i].num+"只" + orderList[i].text
+      content += "</li>"
+    }
+    document.querySelector("#order-list-list").innerHTML  = content
+  }else {
+    document.querySelector("#order-list").style.display = "none"
+  }
 }
 
 // Display the signed-out-flow container

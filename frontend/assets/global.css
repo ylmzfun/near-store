@@ -245,3 +245,10 @@ ul li h2{
 ul li input[type=number]{
   width: 100px;
 }
+
+#order-list ul li{
+  width: 300px;
+  list-style: none;
+  float: none;
+  margin: 0 auto;
+}

@@ -5,74 +5,68 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="assets/favicon.ico"/>
   <link rel="apple-touch-icon" href="assets/favicon.ico"/>
-  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous"> -->
+<!--   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">-->
   <title>Welcome to NEAR</title>
   <link rel="stylesheet" href="assets/global.css">
 </head>
 <body>
-  <main id="signed-out-flow" style="display: none">
-    <h1>
-      Welcome to XXXSSS store!
-    </h1>
-    <h3 >
-      This is a small store based on near blockchain technology.
-    </h3>
-    <p>
-      If you want to enter, please <span style="color: red">click the button below</span>
-    </p>
-    <p style="text-align: center; margin-top: 2.5em">
-      <button id="sign-in-button">Sign in with NEAR Wallet</button>
-    </p>
+<main id="signed-out-flow" style="display: none">
+  <h1>
+    Welcome to XXXSSS store!
+  </h1>
+  <h3 >
+    This is a small store based on near blockchain technology.
+  </h3>
+  <p>
+    If you want to enter, please <span style="color: red">click the button below</span>
+  </p>
+  <p style="text-align: center; margin-top: 2.5em">
+    <button id="sign-in-button">Sign in with NEAR Wallet</button>
+  </p>
 
-  </main>
+</main>
 
-  <div id="signed-in-flow" style="display: none">
-    <button style="float: right" id="sign-out-button">
-      Sign out <span data-behavior="account-id"></span>
-    </button>
-    <ul style="width: 1000px; margin: 0 auto">
-      <li>
-        <img src="assets/ys.png">
-        <h2 >商品1</h2>
-        <h2 >$1/只</h2>
-        <p>很棒的牙刷</p>
-        <input type="number" value="0">
-        <button class="buy">购买</button>
-      </li>
-      <li>
-        <img src="assets/ys.png">
-        <h2 >商品2</h2>
-        <h2 >$1/只</h2>
-        <p>很棒的牙刷</p>
-        <input type="number" value="0">
-        <button class="buy">购买</button>
-      </li>
-      <li>
-        <img src="assets/ys.png">
-        <h2 >商品3</h2>
-        <h2 >$1/只</h2>
-        <p>很棒的牙刷</p>
-        <input type="number" value="0">
-        <button class="buy">购买</button>
-      </li>
-    </ul>
-  </div>
+<div id="signed-in-flow" style="display: none">
+  <button style="float: right" id="sign-out-button">
+    Sign out <span data-behavior="account-id"></span>
+  </button>
+  <ul style="width: 1000px; margin: 0 auto">
+    <li>
+      <img src="assets/ys.png">
+      <h2 >商品1</h2>
+      <h2 >¥1</h2>
+      <p>很棒的牙刷</p>
+      <input type="number" value="0">
+      <button id="buy1" data-name="商品1" data-price="1">购买</button>
+    </li>
+    <li>
+      <img src="assets/ys.png">
+      <h2 >商品2</h2>
+      <h2 >¥2</h2>
+      <p>很棒的牙刷</p>
+      <input type="number" value="0">
+      <button id="buy2" data-name="商品2" data-price="2" >购买</button>
+    </li>
+    <li>
+      <img src="assets/ys.png">
+      <h2 >商品3</h2>
+      <h2 >¥3</h2>
+      <p>很棒的牙刷</p>
+      <input type="number" value="0">
+      <button id="buy3" data-name="商品3" data-price="3">购买</button>
+    </li>
+  </ul>
+</div>
 
-  <div style="clear:both; margin-top: 100px; display: none">
-    <h2>购买成功列表</h2>
-    <ul style="width: 1000px; margin: 0 auto">
-      <li>
-        XXX购买了XX只牙膏，花了XX$
-      </li>
-      <li>
-        XXX购买了XX只牙膏，花了XX$
-      </li>
-      <li>
-        XXX购买了XX只牙膏，花了XX$
-      </li>
-    </ul>
-  </div>
+<div style="clear:both;float: right;margin-top: 100px; display: none; position: absolute;top: 0;right: 20px;background-color: #aec2ea" id="order-list">
+  <h2 style="color: orange">购买成功列表</h2>
+  <ul id="order-list-list">
+    <li>
+      暂无购买信息
+    </li>
+  </ul>
+</div>
 
-  <script src="index.js" type="module"></script>
+<script src="index.js" type="module"></script>
 </body>
 </html>
